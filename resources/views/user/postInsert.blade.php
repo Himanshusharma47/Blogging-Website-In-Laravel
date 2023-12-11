@@ -22,16 +22,14 @@
           <form method="post" action="{{ route('post.data') }}" enctype="multipart/form-data" class="mx-auto max-w-lg rounded-lg border">
             @csrf
             <div class="flex flex-col gap-4 p-4 md:p-8">
-
                 <div>
+                    <input type="hidden" name="userid" value="{{$userId}}">
                     <label for="title" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Select Category</label>
-                    <select class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800">
-                        <optgroup label="Categories">
-                            <option value="">Category 1</option>
-                            <option value="">Category 2</option>
-                            <option value="">Category 3</option>
-                            <option value="">Category 4</option>
-                            <option value="">Category 5</option>
+                    <select name="category" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800">
+                        <optgroup label="Categories">                         
+                          @foreach ($categories as $category )
+                          <option value="{{$category->id}}">{{$category->category}}</option>
+                          @endforeach
                         </optgroup>
                     </select>
                 </div>

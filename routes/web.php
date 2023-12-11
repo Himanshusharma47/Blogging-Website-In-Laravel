@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\AdminPostController;
 use App\Http\Controllers\admin\AdminViewController;
 use App\Http\Controllers\admin\auth\AdminLoginController;
 use App\Http\Controllers\user\auth\UserLoginController;
+use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\PostController;
 use App\Http\Controllers\user\UserViewController;
 use Illuminate\Support\Facades\Route;
@@ -75,7 +76,7 @@ Route::controller(UserViewController::class)->group(function() {
         Route::get('/blog', 'blogPage')->name('user.blog');
         Route::get('/blog-popup', 'blogPopupPage')->name('blog.popup');
         Route::get('/post', 'postPage')->name('user.post');
-        Route::get('/category', 'categoryPage')->name('user.category');
+        // Route::get('/category', 'categoryPage')->name('user.category');
         Route::get('/contact', 'contactPage')->name('user.contact');
     });
 
@@ -83,6 +84,7 @@ Route::controller(UserViewController::class)->group(function() {
 
 
 Route::post('/post-data', [PostController::class, 'postData'])->name('post.data');
+Route::post('/contact-data', [ContactController::class, 'contactData'])->name('contact.data');
 
 
 Route::controller(UserLoginController::class)->group(function() {

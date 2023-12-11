@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserViewController extends Controller
 {
@@ -39,7 +41,12 @@ class UserViewController extends Controller
 
     public function postPage()
     {
-        return view('user.postInsert');
+        $categories = Category::all();
+
+        $user = Auth::guard('web')->user();
+        $userId = $user->id;
+        
+        return view('user.postInsert', compact('categories','userId'));
     }
 
     public function contactPage()

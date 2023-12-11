@@ -11,8 +11,13 @@ class PostController extends Controller
     public function postData(Request $request)
     {
 
+        // dd($request->all());
+        // die();
+
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required',
+            'post' => 'required',
         ]);
 
         $imageName = time().'.'.$request->image->extension();
@@ -21,6 +26,8 @@ class PostController extends Controller
         $table = new Post;
         $table->title = $request->get('title');
         $table->post = $request->get('post');
+        $table->user_id = $request->get('userid');
+        $table->category_id = $request->get('category');
         $table->image = $imageName;
         $table->save();
 

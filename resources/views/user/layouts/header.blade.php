@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
     <link rel="stylesheet" href="{{ asset('assets/css/slideShow.css')}}">
-    <script src="{{ asset('assets/js/slideShow.js')}}"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="{{ asset('assets/js/slideShow.js')}}"></script>
+    {{-- <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
 </head>
 <body>
 
@@ -59,19 +62,6 @@
                 <a href="{{ route('user.post') }}" class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Post</a>
 
                 <a href="{{ route('user.contact') }}" class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Contact</a>
-
-                <a href="{{ route('user.category') }}" class="inline-flex items-center text-lg font-semibold text-indigo-500">
-                    <select>
-                        <optgroup label="Categories">
-                          <option value="">Category </option>
-                          <option value="">Category 2</option>
-                          <option value="">Category 3</option>
-                          <option value="">Category 4</option>
-                          <option value="">Category 5</option>
-                          <!-- Add more options as needed -->
-                        </optgroup>
-                    </select>
-                </a>
             </nav>
             <!-- nav - end -->
 

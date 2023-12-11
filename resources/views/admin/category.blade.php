@@ -36,7 +36,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="category" name="category" placeholder="Search category" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
         </form>
     </div>
 
