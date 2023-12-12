@@ -4,6 +4,7 @@
 @yield('blogpopup-section')
 @yield('categoryShow-section')
 @yield('contact-section')
+@yield('about-section')
 @yield('postinsert-section')
 @yield('login')
 @yield('register')

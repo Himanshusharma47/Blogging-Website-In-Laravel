@@ -26,7 +26,7 @@
                     <input type="hidden" name="userid" value="{{$userId}}">
                     <label for="title" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Select Category</label>
                     <select name="category" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800">
-                        <optgroup label="Categories">                         
+                        <optgroup label="Categories">
                           @foreach ($categories as $category )
                           <option value="{{$category->id}}">{{$category->category}}</option>
                           @endforeach
@@ -53,12 +53,18 @@
           </form>
         </div>
       </div>
-      <script>
+      {{-- <script>
         tinymce.init({
           selector: '#postContent',
-          plugins: 'lists link image',
-          toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image',
-          menubar: false
+          plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+          mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+          ],
+          ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
         });
-      </script>
+      </script> --}}
 @endsection

@@ -74,9 +74,11 @@ Route::controller(UserViewController::class)->group(function() {
 
         Route::get('/home', 'homePage')->name('user.home');
         Route::get('/blog', 'blogPage')->name('user.blog');
-        Route::get('/blog-popup', 'blogPopupPage')->name('blog.popup');
+        // Route::get('/blog-popup', 'blogPopupPage')->name('blog.popup');
+        Route::get('categoryid/{id}', 'singleCategoryShow');
+        Route::get('postid/{id}', 'postIdDataShow');
         Route::get('/post', 'postPage')->name('user.post');
-        // Route::get('/category', 'categoryPage')->name('user.category');
+        Route::get('/aboutus', 'aboutPage')->name('about');
         Route::get('/contact', 'contactPage')->name('user.contact');
     });
 

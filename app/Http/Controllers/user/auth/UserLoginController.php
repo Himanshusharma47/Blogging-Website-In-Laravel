@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserLoginController extends Controller
 {
@@ -27,7 +28,7 @@ class UserLoginController extends Controller
         $data = new User;
         $data->name = $request->get('name');
         $data->email = $request->get('email');
-        $data->password = $request->get('password');
+        $data->password = Hash::make($request->get('password'));
         $data->save();
 
         if($data) {
