@@ -7,10 +7,12 @@ use App\Http\Controllers\admin\AdminPostController;
 use App\Http\Controllers\admin\AdminViewController;
 use App\Http\Controllers\admin\auth\AdminLoginController;
 use App\Http\Controllers\user\auth\UserLoginController;
+use App\Http\Controllers\user\auth\UserRegisterController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\PostController;
 use App\Http\Controllers\user\UserViewController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\user\auth\GmailVerifyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,10 +74,11 @@ Route::controller(UserViewController::class)->group(function() {
 
     Route::middleware(['userAuth'])->group(function () {
 
-        Route::get('/home', 'homePage')->name('user.home');
+        Route::get('/home', 'homePage')->name('user.home'); 
         Route::get('/blog', 'blogPage')->name('user.blog');
         // Route::get('/blog-popup', 'blogPopupPage')->name('blog.popup');
         Route::get('categoryid/{id}', 'singleCategoryShow');
+        Route::get('/category-page', 'categoryPage');
         Route::get('postid/{id}', 'postIdDataShow');
         Route::get('/post', 'postPage')->name('user.post');
         Route::get('/aboutus', 'aboutPage')->name('about');
@@ -91,8 +94,15 @@ Route::post('/contact-data', [ContactController::class, 'contactData'])->name('c
 
 Route::controller(UserLoginController::class)->group(function() {
 
-    Route::post('/register-data', 'registerData')->name('register.data');
     Route::post('/login-data', 'loginData')->name('userlogin.data');
     Route::get('/logout-user', 'logout')->name('logout.user');
-
+    
 });
+
+
+Route::post('/register-data',[UserRegisterController::class,'registerData'] )->name('register.data');
+Route::get('otp/verify/{user}', [GmailVerifyController::class, 'show'])->name('otp.verify');
+Route::post('otp-verify/{user}', [GmailVerifyController::class, 'verify']);
+Route::get('/otp-resend/{user}', [GmailVerifyController::class, 'resendOtp'])->name('otp.resend');
+
+Route::view('/otp', 'user.otp');

@@ -22,12 +22,13 @@ class UserViewController extends Controller
 
     public function homePage()
     {
-        return view('user.index');
+        $blogData = Post::inRandomOrder()->limit(4)->get();
+        return view('user.index', compact('blogData'));
     }
 
     public function blogPage()
     {
-        $blogData = Post::all();
+        $blogData = Post::paginate(12);
         $categoryData = Category::all();
         return view('user.blog', compact(['categoryData', 'blogData']));
     }
@@ -37,15 +38,18 @@ class UserViewController extends Controller
     //     return view('user.blogPopup');
     // }
 
-    public function singleCategoryShow($id='')
+
+    public function singleCategoryShow(Request $request, $id='')
     {
-        $singleCataegory = Post::find($id)->all();
-        return view('user.categoryShow', compact('singleCategory'));
+       
+        $blogData = Post::where('category_id', $id)->get();
+        return view('user.categoryShow', compact( 'blogData'));
     }
 
-    public function postIdDataShow($id='')
+
+    public function postIdDataShow($id)
     {
-        $singlePost = Post::find($id);
+        $singlePost = Post::where('id', $id)->get();
         return view('user.blogPopup', compact('singlePost'));
     }
 

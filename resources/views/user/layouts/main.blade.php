@@ -8,4 +8,5 @@
 @yield('postinsert-section')
 @yield('login')
 @yield('register')
+@yield('user-otpverify-section')
 @include('user.layouts.footer')

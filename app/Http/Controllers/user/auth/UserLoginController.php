@@ -11,33 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserLoginController extends Controller
 {
-    /**
-     * Handle the login request and authenticate the user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function registerData(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required',
-        ]);
-
-        $data = new User;
-        $data->name = $request->get('name');
-        $data->email = $request->get('email');
-        $data->password = Hash::make($request->get('password'));
-        $data->save();
-
-        if($data) {
-            return redirect()->back()->with('success', 'Successfully Registered Now You Can Login');
-        }else {
-            return redirect()->back()->with('error', 'Failed To Registered ');
-        }
-
-    }
+    
+    
 
     /**
      * Handle the login request and authenticate the user.
