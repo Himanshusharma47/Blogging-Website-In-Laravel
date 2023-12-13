@@ -8,23 +8,47 @@ use Illuminate\Http\Request;
 
 class AdminManageUserController extends Controller
 {
-    public function userDataDelete($id='')
+    /**
+     * Delete a user from the application.
+     *
+     * @param  int|string $id The ID of the user to be deleted.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function userDataDelete($id = '')
     {
-        $data = User::find($id);
-        $data->delete();
-        if($data) {
-            return redirect('admin-user')->with(['success' => 'Data Deleted Successfully']);
+        try {
+            $data = User::find($id);
+
+            if ($data) {
+                $data->delete();
+                return redirect('admin-user')->with(['success' => 'Data Deleted Successfully']);
+            } else {
+                return redirect()->back()->with(['error' => 'User not found']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'An error occurred while deleting the user data. Please try again.']);
         }
-        return redirect()->back()->with(['error' => 'Error To Delete The Data']);
     }
 
+    /**
+     * Search for users based on the provided criteria.
+     *
+     * @param  Request $request The HTTP request instance.
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     */
     public function userSearch(Request $request)
     {
-        if($request->isMethod('post')) {
-            $name = $request->get('name');
-            $data = User::where('name', 'LIKE', '%'. $name . '%')->paginate(5);
-            return view('admin.manageUser', compact('data'));
+        try {
+            if ($request->isMethod('post')) {
+                $name = $request->get('name');
+                $data = User::where('name', 'LIKE', '%' . $name . '%')->paginate(5);
+                return view('admin.manageUser', compact('data'));
+            } else {
+                throw new \Exception('Invalid request method.');
+            }
+        } catch (\Exception $e) {
+            return view('admin.manageUser')->with('error', 'An error occurred while searching for user data. ');
         }
-        return view('admin.manageUser')->with('error', 'No data found');
     }
+
 }

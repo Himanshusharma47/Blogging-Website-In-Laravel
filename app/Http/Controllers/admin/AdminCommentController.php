@@ -8,14 +8,27 @@ use Illuminate\Http\Request;
 
 class AdminCommentController extends Controller
 {
-    public function commentDataDelete($id='')
+    /**
+     * Controller method to delete a comment from the application.
+     *
+     * @param  int|string $id The ID of the comment to be deleted.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function commentDataDelete($id = '')
     {
-        $data = Comment::find($id);
-        $data->delete();
-        if($data) {
-            return redirect('admin-comment')->with(['success' => 'Data Deleted Successfully']);
+        try {
+            $data = Comment::find($id);
+
+            if ($data) {
+                $data->delete();
+                return redirect('admin-comment')->with(['success' => 'Data Deleted Successfully']);
+            } else {
+                return redirect()->back()->with(['error' => 'Comment not found']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'An error occurred while deleting the comment. Please try again.']);
         }
-        return redirect()->back()->with(['error' => 'Error To Delete The Data']);
     }
+
 
 }

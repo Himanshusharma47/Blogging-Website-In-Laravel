@@ -22,4 +22,8 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+    function getComments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

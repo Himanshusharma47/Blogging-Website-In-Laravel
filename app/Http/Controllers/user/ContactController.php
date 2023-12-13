@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    /**
+     * Handle the submission of contact form data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function contactData(Request $request)
     {
         $request->validate([
@@ -26,7 +32,7 @@ class ContactController extends Controller
         {
             return redirect()->back()->with('success', 'Message Saved Successfully');
         }
-        return redirect()->back()->with('error', 'Message Saved unsuccessfully');   
+        return redirect()->back()->with('error', 'Message Saved unsuccessfully');
 
     }
 }

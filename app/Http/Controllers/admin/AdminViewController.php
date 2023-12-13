@@ -11,49 +11,90 @@ use Illuminate\Http\Request;
 
 class AdminViewController extends Controller
 {
-        public function loginForm()
-        {
-            return view('admin.login');
-        }
+        /**
+     * Display the login form.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function loginForm()
+    {
+        return view('admin.login');
+    }
 
-        public function adminPostView()
-        {
-            $posts = Post::paginate(15);
-            return view('admin.post', compact('posts'));
-        }
+    /**
+     * Display the admin post view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function adminPostView()
+    {
+        $posts = Post::paginate(15);
+        return view('admin.post', compact('posts'));
+    }
 
-        public function adminCommentView()
-        {
-            $comments = Comment::paginate(5);
-            return view('admin.comment', compact('comments'));
-        }
+    /**
+     * Display the admin comment view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function adminCommentView()
+    {
+        $comments = Comment::paginate(5);
+        return view('admin.comment', compact('comments'));
+    }
 
-        public function adminAddCategory()
-        {
-            return view('admin.addCategory');
-        }
+    /**
+     * Display the admin add category view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function adminAddCategory()
+    {
+        return view('admin.addCategory');
+    }
 
-        public function adminCategoryView()
-        {
-            $categories = Category::paginate(5);
-            return view('admin.category', compact('categories'));
-        }
+    /**
+     * Display the admin category view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function adminCategoryView()
+    {
+        $categories = Category::paginate(5);
+        return view('admin.category', compact('categories'));
+    }
 
-        public function adminUserView()
-        {
-            $data = User::paginate(5);
-            return view('admin.manageUser', compact('data'));
-        }
+    /**
+     * Display the admin user view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function adminUserView()
+    {
+        $data = User::paginate(5);
+        return view('admin.manageUser', compact('data'));
+    }
 
-        public function adminPassword()
-        {
-            return view('admin.changePassword');
-        }
+    /**
+     * Display the admin password change view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function adminPassword()
+    {
+        return view('admin.changePassword');
+    }
 
-        public function dashboard()
-        {
-            $totaluser = User::count();
-            $totalpost = Post::count();
-            return view('admin.dashboard', compact(['totaluser','totalpost']));
-        }
+    /**
+     * Display the admin dashboard view with total user and post counts.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function dashboard()
+    {
+        $totaluser = User::count();
+        $totalpost = Post::count();
+        return view('admin.dashboard', compact(['totaluser', 'totalpost']));
+    }
+
 }

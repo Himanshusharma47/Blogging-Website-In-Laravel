@@ -14,6 +14,7 @@ use App\Http\Controllers\user\UserViewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\auth\GmailVerifyController;
 use App\Http\Controllers\user\auth\GoogleEmailVerifyController;
+use App\Http\Controllers\user\UserCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,6 @@ use App\Http\Controllers\user\auth\GoogleEmailVerifyController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-// Route::get('admin-login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-// Route::post('admin-login', 'Admin\Auth\LoginController@login');
-
 
 Route::controller(AdminViewController::class)->group(function() {
 
@@ -66,7 +62,7 @@ Route::get('comment/{id}', [AdminCommentController::class, 'commentDataDelete'])
 
 
 
-// user section
+//Routes For User Section
 
 Route::controller(UserViewController::class)->group(function() {
 
@@ -77,7 +73,6 @@ Route::controller(UserViewController::class)->group(function() {
 
         Route::get('/home', 'homePage')->name('user.home');
         Route::get('/blog', 'blogPage')->name('user.blog');
-        // Route::get('/blog-popup', 'blogPopupPage')->name('blog.popup');
         Route::get('categoryid/{id}', 'singleCategoryShow');
         Route::get('/category-page', 'categoryPage');
         Route::get('postid/{id}', 'postIdDataShow');
@@ -104,19 +99,12 @@ Route::controller(UserLoginController::class)->group(function() {
 
 
 Route::post('/register-data',[UserRegisterController::class,'registerData'] )->name('register.data');
+
 Route::get('otp/verify/{user}', [GmailVerifyController::class, 'show'])->name('otp.verify');
 Route::post('otp-verify/{user}', [GmailVerifyController::class, 'verify']);
 Route::get('/otp-resend/{user}', [GmailVerifyController::class, 'resendOtp'])->name('otp.resend');
 
-Route::view('/otp', 'user.otp');
+Route::post('/comment-store', [UserCommentController::class, 'commentStore'])->name('comment.store');
 
-
-Route::get('/google',function(){
-
-    Return view('googleAuth');
-    
-    });
-    
-    Route::get('auth/google', [GoogleEmailVerifyController::class, 'redirectToGoogle']);
-    
-    Route::get('auth/google/callback', [GoogleEmailVerifyController::class, 'handleGoogleCallback']);
+Route::get('auth/google', [GoogleEmailVerifyController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleEmailVerifyController::class, 'handleGoogleCallback']);

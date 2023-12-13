@@ -9,40 +9,76 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    /**
+     * Insert new category data into the application.
+     *
+     * @param  Request $request The HTTP request instance.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function categoryDataInsert(Request $request)
     {
-        $data = new Category;
-        if($request->isMethod('post')) {
-            $data->category = $request->get('category');
-            $data->description = $request->get('description');
-            $data->save();
-        }
+        try {
+            $data = new Category;
 
-        if($data) {
-            return redirect('admin-category')->with(['success' => 'Data Added Successfully']);
-        }
-        return redirect()->back()->with(['error' => 'Error To Add The Data']);
+            if ($request->isMethod('post')) {
+                $data->category = $request->get('category');
+                $data->description = $request->get('description');
+                $data->save();
+            }
 
+            if ($data) {
+                return redirect('admin-category')->with(['success' => 'Data Added Successfully']);
+            } else {
+                throw new \Exception('Failed to add category data.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'An error occurred while adding the category data. Please try again.']);
+        }
     }
 
-    public function categoryDataDelete($id='')
+
+    /**
+     * Delete a category from the application.
+     *
+     * @param  int|string $id The ID of the category to be deleted.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function categoryDataDelete($id = '')
     {
-        $data = Category::find($id);
-        $data->delete();
-        if($data) {
-            return redirect('admin-category')->with(['success' => 'Data Deleted Successfully']);
+        try {
+            $data = Category::find($id);
+
+            if ($data) {
+                $data->delete();
+                return redirect('admin-category')->with(['success' => 'Data Deleted Successfully']);
+            } else {
+                return redirect()->back()->with(['error' => 'Category not found']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'An error occurred while deleting the category data. Please try again.']);
         }
-        return redirect()->back()->with(['error' => 'Error To Delete The Data']);
     }
 
 
+    /**
+     * Search for categories based on the provided criteria.
+     *
+     * @param  Request $request The HTTP request instance.
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     */
     public function categorySearch(Request $request)
     {
-        if($request->isMethod('post')) {
-            $category = $request->get('category');
-            $categories = Category::where('category', 'LIKE', '%'. $category . '%')->paginate(5);
-            return view('admin.category', compact('categories'));
+        try {
+            if ($request->isMethod('post')) {
+                $category = $request->get('category');
+                $categories = Category::where('category', 'LIKE', '%' . $category . '%')->paginate(5);
+                return view('admin.category', compact('categories'));
+            } else {
+                throw new \Exception('Invalid request method.');
+            }
+        } catch (\Exception $e) {
+            return view('admin.category')->with('error', 'An error occurred while searching for category data. Please try again.');
         }
-        return view('admin.category')->with('error', 'No data found');
     }
+
 }

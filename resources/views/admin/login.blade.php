@@ -1,19 +1,23 @@
 @extends('admin.layouts.main')
 
-@section('login')
-     <!-- Display error message if available in the session -->
-     @if(session('error'))
-     <div class="alert alert-danger">
-         {{ session('error') }}
-     </div>
-     @endif
+@push('title')
+   Admin-Login
+@endpush
 
-     <!-- Display success message if available in the session -->
-     @if (session('success'))
-         <div class="alert alert-success">
-             {{ session('success') }}
-         </div>
-     @endif
+@section('login')
+    <!-- Display error message if available in the session -->
+    @if (session('error'))
+        <div class="alert alert-danger" id="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <!-- Display success message if available in the session -->
+    @if (session('success'))
+        <div class="alert alert-success" id="alert">
+            {{ session('success') }}
+        </div>
+    @endif
     <!-- Login Form -->
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -50,7 +54,7 @@
         const passwordInput = document.getElementById('password');
         const togglePasswordButton = document.getElementById('toggle-password');
 
-        togglePasswordButton.addEventListener('click', function () {
+        togglePasswordButton.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
 
@@ -60,5 +64,4 @@
             eyeIcon.classList.toggle('fa-eye');
         });
     </script>
-
 @endsection

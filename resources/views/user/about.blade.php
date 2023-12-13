@@ -1,5 +1,9 @@
 @extends('user.layouts.main')
 
+@push('title')
+   About-Us
+@endpush
+
 @section('about-section')
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">

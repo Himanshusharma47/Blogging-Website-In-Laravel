@@ -9,52 +9,51 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleEmailVerifyController extends Controller
-{ public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+{
 
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
+    /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
+   public function __construct()
+   {
+       $this->middleware('guest')->except('logout');
+   }
 
+   /**
+    * Redirect the user to the Google authentication page.
+    *
+    * @return \Illuminate\Http\RedirectResponse
+    */
+   public function redirectToGoogle()
+   {
+       return Socialite::driver('google')->redirect();
+   }
 
-    public function handleGoogleCallback()
-    {
-        try {
+   /**
+    * Obtain the user information from Google.
+    *
+    * @return \Illuminate\Http\RedirectResponse
+    */
+   public function handleGoogleCallback()
+   {
+       try {
+           $user = Socialite::driver('google')->user();
+           $finduser = User::where('google_id', $user->id)->first();
 
-            $user = Socialite::driver('google')->user();
-            $finduser = User::where('google_id', $user->id)->first();
+           $newUser = User::create([
+               'name' => $user->name,
+               'email' => $user->email,
+               'google_id' => $user->id
+           ]);
 
-            $newUser = User::create([
+           Auth::login($newUser);
 
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'google_id' => $user->id
-            
-                    ]);
-            
-                    Auth::login($newUser);
-            
-                    return redirect()->back();
+           return redirect()->back();
+       } catch (\Exception $e) {
+           return redirect('auth/google')->with('error', 'Your Have Error Is' . $e->getMessage());
+       }
+   }
 
-        } catch (\Exception $e) {
-
-            return redirect('auth/google')->with('error', 'Your Have Error Is' . $e->getMessage());
-
-        }
-
-    }
-
-    // public function handleGoogleCallback(){
-    //     $user = Socialite::driver('google')->user();
-
-    // if($finduser) {
-
-    //     Auth::login($finduser);
-
-    //     return redirect('/home');
-    // }
-  
 }

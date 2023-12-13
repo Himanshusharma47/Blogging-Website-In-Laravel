@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    /**
+     * Handle the creation of a new post.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postData(Request $request)
     {
         try {
@@ -39,23 +45,33 @@ class PostController extends Controller
         }
     }
 
+
+    /**
+     * Handle the deletion of a single post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function singlePostDelete($id)
     {
         try {
             $post = Post::find($id);
-    
+
             if (!$post) {
                 return back()->with('error', 'Post not found.');
             }
-    
+
             $post->delete();
-    
+
             return back()->with('success', 'You have successfully deleted a post.');
+
         } catch (\Exception $e) {
+
             return back()->with('error', 'An error occurred while deleting the post.');
         }
     }
-    
+
+
 
 
 }

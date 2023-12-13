@@ -28,6 +28,7 @@ class AdminLoginController extends Controller
         $user = AdminLogin::where('adminname', $credentials['adminname'])->first();
 
         if (Auth::guard('adminlogin')->attempt($credentials)) {
+
             return redirect('/admin-dashboard')->with(['success' => 'Login Successful']);
         }
 
@@ -58,26 +59,33 @@ class AdminLoginController extends Controller
      */
     public function changePassword(Request $request)
     {
-        if ($request->isMethod('post')) {
+        try{
+            if ($request->isMethod('post')) {
 
-            $oldpw = $request->get('oldPassword');
-            $newpw = $request->get('newPassword');
-            $cnewp = $request->get('confNewPassword');
+                $oldpw = $request->get('oldPassword');
+                $newpw = $request->get('newPassword');
+                $cnewp = $request->get('confNewPassword');
 
-            if ($newpw == $cnewp) {
+                if ($newpw == $cnewp) {
 
-                $data = AdminLogin::where('password', $oldpw)->first();
+                    $data = AdminLogin::where('password', $oldpw)->first();
 
-                if (isset($data)) {
-                    $data->password = $newpw;
-                    $data->save();
-                    return redirect()->back()->with("success", "Password Updated Successfully");
+                    if (isset($data)) {
+                        $data->password = $newpw;
+                        $data->save();
+
+                        return redirect()->back()->with("success", "Password Updated Successfully");
+                    } else {
+
+                        return redirect()->back()->with("error", "Old Password not match");
+                    }
                 } else {
-                    return redirect()->back()->with("error", "Old Password not match");
+
+                    return redirect()->back()->with("error", "New password and Confirm new password does not match");
                 }
-            } else {
-                return redirect()->back()->with("error", "New password and Confirm new password does not match");
             }
+        } catch (\Exception $e) {
+            return redirect()->back()->with("error", "An error occurred while processing your request. Please try again.");
         }
     }
 }
