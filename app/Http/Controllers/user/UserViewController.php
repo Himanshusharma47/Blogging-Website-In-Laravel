@@ -8,6 +8,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class UserViewController extends Controller
 {
     public function loginForm()
@@ -41,7 +43,7 @@ class UserViewController extends Controller
 
     public function singleCategoryShow(Request $request, $id='')
     {
-       
+
         $blogData = Post::where('category_id', $id)->get();
         return view('user.categoryShow', compact( 'blogData'));
     }
@@ -76,5 +78,16 @@ class UserViewController extends Controller
     public function aboutPage()
     {
         return view('user.about');
+    }
+
+    public function profilePage()
+    {
+
+
+        $userid = auth()->guard('web')->id();
+        $post = Post::where('user_id', $userid)->get();
+        // dd($share);
+
+        return view('user.profile', compact('post'));
     }
 }

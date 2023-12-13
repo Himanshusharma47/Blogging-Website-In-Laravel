@@ -8,7 +8,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     {{-- <script src="https://cdn.tiny.cloud/1/ries1skyvozn5h62b4c18cj47rre7qdkwgqelv2tr29cdrob/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 </head>
 <body>
@@ -28,8 +31,9 @@
             <a href="{{ route('user.post') }}" class="mr-5 hover:text-gray-900">Post</a>
             <a href="{{ route('user.contact') }}" class="mr-5 hover:text-gray-900">Contact</a>
             <a href="{{ route('about') }}" class="mr-5 hover:text-gray-900">About</a>
+            <a href="{{ route('user.profile') }}" class="mr-5 hover:text-gray-900">Profile</a>
           </nav>
-            <a href="{{ route('logout.user') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-0 md:mt-0"> Logout  {{ auth()->user()->name }} 
+            <a href="{{ route('logout.user') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-0 md:mt-0"> Logout  {{ auth()->user()->name }}
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
@@ -37,3 +41,6 @@
         @endif
         </div>
       </header>
+
+
+

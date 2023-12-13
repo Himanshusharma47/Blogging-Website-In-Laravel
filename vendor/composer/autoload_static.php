@@ -130,6 +130,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
             'Laravel\\Sail\\' => 13,
             'Laravel\\Prompts\\' => 16,
         ),
+        'J' => 
+        array (
+            'Jorenvh\\Share\\' => 14,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -353,8 +357,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -431,6 +435,10 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Laravel\\Prompts\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/prompts/src',
+        ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -531,7 +539,20 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\admin\\AdminCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/AdminCommentController.php',
+        'App\\Http\\Controllers\\admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/AdminController.php',
+        'App\\Http\\Controllers\\admin\\AdminManageUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/AdminManageUserController.php',
+        'App\\Http\\Controllers\\admin\\AdminPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/AdminPostController.php',
+        'App\\Http\\Controllers\\admin\\AdminViewController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/AdminViewController.php',
+        'App\\Http\\Controllers\\admin\\auth\\AdminLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/auth/AdminLoginController.php',
+        'App\\Http\\Controllers\\user\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/ContactController.php',
+        'App\\Http\\Controllers\\user\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/PostController.php',
+        'App\\Http\\Controllers\\user\\UserViewController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/UserViewController.php',
+        'App\\Http\\Controllers\\user\\auth\\GmailVerifyController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/GmailVerifyController.php',
+        'App\\Http\\Controllers\\user\\auth\\UserLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/UserLoginController.php',
+        'App\\Http\\Controllers\\user\\auth\\UserRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/UserRegisterController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\AdminAuthMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminAuthMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
@@ -539,8 +560,15 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
+        'App\\Http\\Middleware\\UserAuthMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/UserAuthMiddleware.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\MailVerify' => __DIR__ . '/../..' . '/app/Mail/MailVerify.php',
+        'App\\Models\\AdminLogin' => __DIR__ . '/../..' . '/app/Models/AdminLogin.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
+        'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -657,6 +685,9 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Database\\Factories\\AdminLoginFactory' => __DIR__ . '/../..' . '/database/factories/AdminLoginFactory.php',
+        'Database\\Factories\\CategoryFactory' => __DIR__ . '/../..' . '/database/factories/CategoryFactory.php',
+        'Database\\Factories\\PostFactory' => __DIR__ . '/../..' . '/database/factories/PostFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
@@ -2760,6 +2791,9 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'Laravel\\Prompts\\Concerns\\Colors' => __DIR__ . '/..' . '/laravel/prompts/src/Concerns/Colors.php',
         'Laravel\\Prompts\\Concerns\\Cursor' => __DIR__ . '/..' . '/laravel/prompts/src/Concerns/Cursor.php',
         'Laravel\\Prompts\\Concerns\\Erase' => __DIR__ . '/..' . '/laravel/prompts/src/Concerns/Erase.php',

@@ -74,7 +74,7 @@ Route::controller(UserViewController::class)->group(function() {
 
     Route::middleware(['userAuth'])->group(function () {
 
-        Route::get('/home', 'homePage')->name('user.home'); 
+        Route::get('/home', 'homePage')->name('user.home');
         Route::get('/blog', 'blogPage')->name('user.blog');
         // Route::get('/blog-popup', 'blogPopupPage')->name('blog.popup');
         Route::get('categoryid/{id}', 'singleCategoryShow');
@@ -83,6 +83,7 @@ Route::controller(UserViewController::class)->group(function() {
         Route::get('/post', 'postPage')->name('user.post');
         Route::get('/aboutus', 'aboutPage')->name('about');
         Route::get('/contact', 'contactPage')->name('user.contact');
+        Route::get('/profile', 'profilePage')->name('user.profile');
     });
 
 });
@@ -96,7 +97,7 @@ Route::controller(UserLoginController::class)->group(function() {
 
     Route::post('/login-data', 'loginData')->name('userlogin.data');
     Route::get('/logout-user', 'logout')->name('logout.user');
-    
+
 });
 
 

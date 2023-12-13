@@ -10,6 +10,9 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    protected $table = 'users';
+    public $timestamps = false;
+
     protected $fillable = [
         'name', 'email', 'password', 'otp', 'otp_expires_at',
     ];

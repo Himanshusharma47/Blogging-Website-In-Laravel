@@ -1,7 +1,6 @@
 @extends('user.layouts.main')
 
 @section('user-otpverify-section')
-
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -29,7 +28,7 @@
                                 </div>
                                 <div id="countdown-timer" class="alert alert-info"></div>
 
-                                <button type="submit" class="btn btn-primary">Verify OTP</button>
+                                <button type="submit" class="btn btn-info">Verify OTP</button>
 
                                 @if (!$user->email_verified_at)
                                     <a href="{{ route('otp.resend', ['user' => $user]) }}" class="btn btn-secondary">Resend OTP</a>
@@ -45,7 +44,7 @@
             $(document).ready(function() {
                 var remainingTime = {{ $user->otp_expires_at->diffInSeconds(now()) }};
                 var countdownTimer = $('#countdown-timer');
-        
+
                 function updateTimer() {
                     if (remainingTime > 0) {
                         var minutes = Math.floor(remainingTime / 60);
@@ -57,7 +56,7 @@
                         clearInterval(timerInterval);
                     }
                 }
-        
+
                 var timerInterval = setInterval(updateTimer, 1000);
                 updateTimer(); // Call initially to avoid a 1-second delay in displaying the timer
             });

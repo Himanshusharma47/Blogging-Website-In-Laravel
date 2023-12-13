@@ -11,6 +11,9 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $table = 'posts';
+    public $timestamps = false;
+
     function getUser()
     {
         return $this->belongsTo(User::class, 'user_id');

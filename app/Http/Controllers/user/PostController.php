@@ -10,32 +10,32 @@ class PostController extends Controller
 {
     public function postData(Request $request)
     {
+        try {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'title' => 'required',
+                'post' => 'required',
+            ]);
 
+            $imageName = time().'.'.$request->image->getClientOriginalName();
+            $request->image->move(public_path('images'), $imageName);
+            $imagePath = 'images/'.$imageName;
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title' => 'required',
-            'post' => 'required',
-        ]);
-        $imageName = time().'.'.$request->image->getClientOriginalName();
-        $request->image->move(public_path('images'), $imageName);
-        $imagePath = 'images/'.$imageName;
-        // Store $imageName in the database if needed
-        $table = new Post;
-        $table->title = $request->get('title');
-        $table->post = $request->get('post');
-        $table->user_id = $request->get('userid');
-        $table->category_id = $request->get('category');
-        $table->image = $imagePath;
-        $table->save();
+            $table = new Post;
+            $table->title = $request->get('title');
+            $table->post = $request->get('post');
+            $table->user_id = $request->get('userid');
+            $table->category_id = $request->get('category');
+            $table->image = $imagePath;
+            $table->save();
 
+            return back()
+                    ->with('success','You have successfully uploaded a post.')
+                    ->with('image', $imageName);
 
-        
-
-        /* Store $imageName name in DATABASE from HERE */
-
-        return back()
-                ->with('success','You have successfully upload Post.')
-                ->with('image',$imageName);
+        } catch (\Exception $e) {
+            return back()
+                    ->with('error', 'Error uploading post: ' . $e->getMessage());
+        }
     }
 }
