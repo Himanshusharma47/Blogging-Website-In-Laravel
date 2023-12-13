@@ -13,6 +13,7 @@ use App\Http\Controllers\user\PostController;
 use App\Http\Controllers\user\UserViewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\auth\GmailVerifyController;
+use App\Http\Controllers\user\auth\GoogleEmailVerifyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,7 @@ Route::controller(UserViewController::class)->group(function() {
 
 
 Route::post('/post-data', [PostController::class, 'postData'])->name('post.data');
+Route::get('delete-post/{id}', [PostController::class, 'singlePostDelete']);
 Route::post('/contact-data', [ContactController::class, 'contactData'])->name('contact.data');
 
 
@@ -107,3 +109,14 @@ Route::post('otp-verify/{user}', [GmailVerifyController::class, 'verify']);
 Route::get('/otp-resend/{user}', [GmailVerifyController::class, 'resendOtp'])->name('otp.resend');
 
 Route::view('/otp', 'user.otp');
+
+
+Route::get('/google',function(){
+
+    Return view('googleAuth');
+    
+    });
+    
+    Route::get('auth/google', [GoogleEmailVerifyController::class, 'redirectToGoogle']);
+    
+    Route::get('auth/google/callback', [GoogleEmailVerifyController::class, 'handleGoogleCallback']);

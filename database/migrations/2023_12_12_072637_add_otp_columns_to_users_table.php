@@ -16,6 +16,7 @@ class AddOtpColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('otp')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('google_id')->nullable();
             $table->timestamp('otp_verify')->nullable();
         });
     }

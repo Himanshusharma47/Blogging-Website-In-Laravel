@@ -15,6 +15,23 @@
          </div>
      @endif
 
+     <style>
+        div#social-links {
+            margin: 0 auto;
+            max-width: 500px;
+        }
+        div#social-links ul li {
+            display: inline-block;
+        }
+        div#social-links ul li a {
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin: 1px;
+            font-size: 20px;
+            /* color: #222; */
+            background-color: #ffffff;
+        }
+    </style>
      <section class="text-gray-600 body-font">
         <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
             @foreach ($singlePost as $item)
@@ -24,9 +41,18 @@
                 <h1 class="title-font sm:text-4xl text-xl mb-4 font-medium text-gray-900">{{$item->title}}</h1>
                 <p class="mb-8 leading-relaxed text-xl">{{$item->post}}</p>
             </div>
+            <div class="social-links">
+                {!! $share = \Share::page('hello','you post')
+                ->whatsapp()
+                ->linkedin(); !!}
+            </div>
             @endforeach
         </div>
       </section>
+
+      <!--share button scripts-->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+      <script src="{{ asset('js/share.js') }}"></script>
 
 
 @endsection

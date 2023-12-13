@@ -35,12 +35,6 @@ class UserViewController extends Controller
         return view('user.blog', compact(['categoryData', 'blogData']));
     }
 
-    // public function blogPopupPage()
-    // {
-    //     return view('user.blogPopup');
-    // }
-
-
     public function singleCategoryShow(Request $request, $id='')
     {
 

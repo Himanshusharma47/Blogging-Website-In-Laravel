@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '584731775613-v3kf2icdrhucetn29du3u95fp0mum5dc.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://localhost/Laravel_New_Projects/Blogging-Website-In-Laravel/public/home',
+      ],
+
 ];

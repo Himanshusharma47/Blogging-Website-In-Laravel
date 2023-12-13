@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\MailVerify;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class GmailVerifyController extends Controller
@@ -26,7 +27,8 @@ class GmailVerifyController extends Controller
             $user->otp = null; // Clear the OTP after successful verification
             $user->otp_expires_at = null; // Clear the OTP expiration time
             $user->save();
-
+            
+            Auth::login($user);
             return redirect('/home')->with('success', 'You have Successfully Signed Up');
         } 
         elseif ($user->email_verified_at) {

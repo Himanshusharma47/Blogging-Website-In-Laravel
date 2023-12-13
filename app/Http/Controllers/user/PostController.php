@@ -38,4 +38,24 @@ class PostController extends Controller
                     ->with('error', 'Error uploading post: ' . $e->getMessage());
         }
     }
+
+    public function singlePostDelete($id)
+    {
+        try {
+            $post = Post::find($id);
+    
+            if (!$post) {
+                return back()->with('error', 'Post not found.');
+            }
+    
+            $post->delete();
+    
+            return back()->with('success', 'You have successfully deleted a post.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'An error occurred while deleting the post.');
+        }
+    }
+    
+
+
 }
