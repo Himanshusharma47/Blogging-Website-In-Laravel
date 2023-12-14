@@ -94,7 +94,9 @@ class AdminViewController extends Controller
     {
         $totaluser = User::count();
         $totalpost = Post::count();
-        return view('admin.dashboard', compact(['totaluser', 'totalpost']));
+        $totalcomment = Comment::count();
+        $post =  Post::latest('post')->take(3)->get();
+        return view('admin.dashboard', compact(['totaluser', 'totalpost', 'post', 'totalcomment']));
     }
 
 }

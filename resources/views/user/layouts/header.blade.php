@@ -39,7 +39,7 @@
                     <a href="{{ route('user.contact') }}" class="mr-5 hover:text-gray-900">Contact</a>
                     <a href="{{ route('about') }}" class="mr-5 hover:text-gray-900">About Us</a>
                     <a href="{{ route('user.profile') }}" class="mr-5 hover:text-gray-900">Profile</a>
-                    <a href="{{ route('admin.login') }}" class="mr-5 hover:text-gray-900">Admin</a>
+                    {{-- <a href="{{ route('admin.login') }}" class="mr-5 hover:text-gray-900">Admin</a> --}}
                 </nav>
                 @if (Auth::check())
                     <a href="{{ route('logout.user') }}"

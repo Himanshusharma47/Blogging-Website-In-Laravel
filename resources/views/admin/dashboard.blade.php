@@ -26,15 +26,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 mt-5">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Comments</h5>
+                        <p class="card-text">{{ $totalcomment }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="card mt-4">
             <div class="card-body">
                 <h5 class="card-title text-warning">Recent Posts</h5>
                 <ul>
-                    <li class="text-primary">Post 1 - <small>Posted by Admin</small></li>
-                    <li class="text-primary">Post 2 - <small>Posted by Admin</small></li>
-                    <li class="text-primary">Post 3 - <small>Posted by Admin</small></li>
+                    @foreach ($post as $item)
+                    <li class="text-primary"><b>{{$item->title}}</b><p>{{$item->post}}</p></li>
+                    @endforeach
+                   
                 </ul>
             </div>
         </div>

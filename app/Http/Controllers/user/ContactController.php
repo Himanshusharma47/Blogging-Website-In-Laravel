@@ -5,7 +5,8 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 class ContactController extends Controller
 {
     /**
@@ -28,6 +29,14 @@ class ContactController extends Controller
         $contact->message = $request->get('message');
         $contact->save();
 
+        $mail = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+        ];
+
+        Mail::to('himanshulpu1@gmail.com')->send(new ContactMail($mail));
+        
         if($contact)
         {
             return redirect()->back()->with('success', 'Message Saved Successfully');
