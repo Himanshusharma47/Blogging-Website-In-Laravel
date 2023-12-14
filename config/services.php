@@ -32,9 +32,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '584731775613-v3kf2icdrhucetn29du3u95fp0mum5dc.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'http://localhost/Laravel_New_Projects/Blogging-Website-In-Laravel/public/home',
+        'client_id' => '584731775613-mj8hqt19qq4l4uhv5c2c5uo4stprt8l3.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://localhost/Laravel_New_Projects/Blogging-Website-In-Laravel/public/auth/google/callback',
       ],
 
 ];
