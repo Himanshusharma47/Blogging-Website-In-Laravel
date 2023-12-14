@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleEmailVerifyController extends Controller
@@ -40,12 +41,14 @@ class GoogleEmailVerifyController extends Controller
    {
        try {
            $user = Socialite::driver('google')->user();
+        //    dd($user);
            $finduser = User::where('google_id', $user->id)->first();
 
            $newUser = User::create([
                'name' => $user->name,
                'email' => $user->email,
-               'google_id' => $user->id
+               'google_id' => $user->id,
+               'password' => bcrypt('123'),
            ]);
 
            Auth::login($newUser);

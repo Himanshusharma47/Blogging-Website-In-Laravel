@@ -12,9 +12,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class UserLoginController extends Controller
 {
-    
-    
-
     /**
      * Handle the login request and authenticate the user.
      *

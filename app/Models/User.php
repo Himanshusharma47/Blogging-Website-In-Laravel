@@ -14,15 +14,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'email', 'password', 'otp', 'otp_expires_at',
+        'name', 'email', 'password', 'otp', 'otp_expires_at', 'google_id', 'facebook_id',
     ];
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'otp_expires_at' => 'datetime',
+    ];
+
+    protected $appends = [
+        'profile_photo_url',
     ];
 }

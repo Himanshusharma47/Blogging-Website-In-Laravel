@@ -48,6 +48,22 @@
                         class="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base">Log
                         in</button>
 
+                        <div class="relative flex items-center justify-center">
+                            <span class="absolute inset-x-0 h-px bg-gray-300"></span>
+                            <span class="relative bg-white px-4 text-sm text-gray-400">Log in with social</span>
+                        </div>
+
+                        <a href="{{ url('auth/google') }}"
+                            class="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-1 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 md:text-base">
+                            <i class="fa-brands fa-google"></i>
+                            Continue with Google
+                        <a>
+                        <a href="{{ url('login/facebook') }}"
+                            class="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-0 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300  md:text-base">
+                            <i class="fa-brands fa-facebook"></i>
+                            Continue with Facebook
+                        <a>
+
                     <div class="flex items-center justify-center bg-gray-100 p-4">
                         <p class="text-center text-sm text-gray-500">Don't have an account? <a
                                 href="{{ route('user.register') }}"

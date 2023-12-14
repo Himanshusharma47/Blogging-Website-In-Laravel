@@ -55,6 +55,7 @@
 
 
     <script>
+        // script for select category from option selections
         document.getElementById('category-select').addEventListener('change', function() {
             var categoryId = this.value;
             if (categoryId) {

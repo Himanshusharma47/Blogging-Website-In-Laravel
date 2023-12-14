@@ -1,17 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminCommentController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminManageUserController;
 use App\Http\Controllers\admin\AdminPostController;
 use App\Http\Controllers\admin\AdminViewController;
 use App\Http\Controllers\admin\auth\AdminLoginController;
+use App\Http\Controllers\user\auth\FacebookAuthController;
 use App\Http\Controllers\user\auth\UserLoginController;
 use App\Http\Controllers\user\auth\UserRegisterController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\PostController;
 use App\Http\Controllers\user\UserViewController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\auth\GmailVerifyController;
 use App\Http\Controllers\user\auth\GoogleEmailVerifyController;
 use App\Http\Controllers\user\UserCommentController;
@@ -100,11 +101,17 @@ Route::controller(UserLoginController::class)->group(function() {
 
 Route::post('/register-data',[UserRegisterController::class,'registerData'] )->name('register.data');
 
+// gamil verify routes
 Route::get('otp/verify/{user}', [GmailVerifyController::class, 'show'])->name('otp.verify');
 Route::post('otp-verify/{user}', [GmailVerifyController::class, 'verify']);
 Route::get('/otp-resend/{user}', [GmailVerifyController::class, 'resendOtp'])->name('otp.resend');
 
 Route::post('/comment-store', [UserCommentController::class, 'commentStore'])->name('comment.store');
 
+// google auth routes
 Route::get('auth/google', [GoogleEmailVerifyController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleEmailVerifyController::class, 'handleGoogleCallback']);
+
+// facebook auth routes
+Route::get('login/facebook', [FacebookAuthController::class , 'redirectToFacebook']);
+Route::get('login/facebook/callback', [FacebookAuthController::class, 'handleFacebookCallback']);

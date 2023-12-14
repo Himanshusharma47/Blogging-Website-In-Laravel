@@ -32,9 +32,15 @@ return [
     ],
 
     'google' => [
-        'client_id' => '584731775613-mj8hqt19qq4l4uhv5c2c5uo4stprt8l3.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'http://localhost/Laravel_New_Projects/Blogging-Website-In-Laravel/public/auth/google/callback',
+        'client_id' => '1014468972651-7fsru1h5lvkdk05vj029es8nbto6puld.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://localhost:8000/auth/google/callback',
       ],
+
+      'facebook' => [
+        'client_id' => '1775446799638061',
+        'client_secret' => '782165ed81c6d58dae21f0e6f6e1e573',
+        'redirect' => 'http://localhost:8000/auth/facebook/callback',
+    ],
 
 ];

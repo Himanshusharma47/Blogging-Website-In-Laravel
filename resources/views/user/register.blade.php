@@ -54,14 +54,19 @@
 
                     <div class="relative flex items-center justify-center">
                         <span class="absolute inset-x-0 h-px bg-gray-300"></span>
-                        <span class="relative bg-white px-4 text-sm text-gray-400">Log in with social</span>
+                        <span class="relative bg-white px-4 text-sm text-gray-400"> Register in with social</span>
                     </div>
 
                     <a href="{{ url('auth/google') }}"
-                        class="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">
+                        class="flex items-center justify-center gap-1 rounded-lg border border-gray-300 bg-white px-2 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 md:text-base">
                         <i class="fa-brands fa-google"></i>
                         Continue with Google
-                        <a>
+                    <a>
+                    <a href="{{ url('login/facebook') }}"
+                        class="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 md:text-base">
+                        <i class="fa-brands fa-facebook"></i>
+                        Continue with Facebook
+                    <a>
                 </div>
 
                 <div class="flex items-center justify-center bg-gray-100 p-4">
