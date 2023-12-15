@@ -92,11 +92,22 @@ class AdminViewController extends Controller
      */
     public function dashboard()
     {
+        $postsPerCategory = Post::selectRaw('COUNT(*) as count')
+            ->groupBy('category_id')
+            ->get()
+            ->pluck('count')
+            ->toArray();
+
+        $categoryLabels = Post::select('categories.category')
+            ->join('categories', 'categories.id', '=', 'posts.category_id')
+            ->groupBy('categories.category')
+            ->pluck('categories.category')
+            ->toArray();
         $totaluser = User::count();
         $totalpost = Post::count();
         $totalcomment = Comment::count();
-        $post =  Post::latest('post')->take(3)->get();
-        return view('admin.dashboard', compact(['totaluser', 'totalpost', 'post', 'totalcomment']));
+        $post =  Post::orderBy('id', 'desc')->take(3)->get();
+        return view('admin.dashboard', compact(['totaluser', 'totalpost', 'post', 'totalcomment', 'postsPerCategory', 'categoryLabels']));
     }
 
 }
